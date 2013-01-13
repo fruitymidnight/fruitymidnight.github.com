@@ -4,7 +4,7 @@
   <title><![CDATA[Shin's Github Blog]]></title>
   <link href="http://fruitymidnight.github.com/atom.xml" rel="self"/>
   <link href="http://fruitymidnight.github.com/"/>
-  <updated>2013-01-14T01:51:45+09:00</updated>
+  <updated>2013-01-14T01:58:39+09:00</updated>
   <id>http://fruitymidnight.github.com/</id>
   <author>
     <name><![CDATA[Shin]]></name>
@@ -12,5 +12,29 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Github Pages でブログ]]></title>
+    <link href="http://fruitymidnight.github.com/blog/2013/01/14/first-post/"/>
+    <updated>2013-01-14T01:53:00+09:00</updated>
+    <id>http://fruitymidnight.github.com/blog/2013/01/14/first-post</id>
+    <content type="html"><![CDATA[<p>Github を利用してブログを書くことができる、とのことなのでテスト。</p>
+
+<p>ファイルの管理は git 、記法は markdown を利用できるとのことなので勉強用にいいかなと思っています。</p>
+
+<p>以下 markdown の記法を試してみます。</p>
+
+<ul>
+<li>h1</li>
+</ul>
+
+
+<p>** h2</p>
+
+<p>*** h3</p>
+
+<p>文中で引用<code>引用</code></p>
+]]></content>
+  </entry>
   
 </feed>
