@@ -4,7 +4,7 @@
   <title><![CDATA[Shin's Github Blog]]></title>
   <link href="http://fruitymidnight.github.com/atom.xml" rel="self"/>
   <link href="http://fruitymidnight.github.com/"/>
-  <updated>2013-01-14T01:58:39+09:00</updated>
+  <updated>2013-01-14T11:36:53+09:00</updated>
   <id>http://fruitymidnight.github.com/</id>
   <author>
     <name><![CDATA[Shin]]></name>
@@ -24,14 +24,18 @@
 
 <p>以下 markdown の記法を試してみます。</p>
 
-<ul>
-<li>h1</li>
-</ul>
+<h1>見出し１</h1>
 
+<pre><code># 見出し１
+## 見出し２
+### 見出し３
+</code></pre>
 
-<p>** h2</p>
+<p>で見出し。</p>
 
-<p>*** h3</p>
+<h2>見出し２</h2>
+
+<h3>見出し３</h3>
 
 <p>文中で引用<code>引用</code></p>
 ]]></content>
