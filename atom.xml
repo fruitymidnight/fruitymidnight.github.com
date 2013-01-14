@@ -4,7 +4,7 @@
   <title><![CDATA[Shin's Github Blog]]></title>
   <link href="http://fruitymidnight.github.com/atom.xml" rel="self"/>
   <link href="http://fruitymidnight.github.com/"/>
-  <updated>2013-01-14T15:20:15+09:00</updated>
+  <updated>2013-01-14T15:23:01+09:00</updated>
   <id>http://fruitymidnight.github.com/</id>
   <author>
     <name><![CDATA[Shin]]></name>
@@ -49,7 +49,7 @@
 <h3>コード</h3>
 
 <p>コードの記載には文頭に4つ以上の空白をいれる。
-文章中にいれるときは<code>\</code>コード&#8220;と記載する。</p>
+文章中にいれるときはバッククォートを使用して<code>コード</code>と記載する。</p>
 
 <h3>見出し</h3>
 
