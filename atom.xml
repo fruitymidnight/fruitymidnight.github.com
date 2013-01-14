@@ -4,7 +4,7 @@
   <title><![CDATA[Shin's Github Blog]]></title>
   <link href="http://fruitymidnight.github.com/atom.xml" rel="self"/>
   <link href="http://fruitymidnight.github.com/"/>
-  <updated>2013-01-14T11:53:55+09:00</updated>
+  <updated>2013-01-14T15:19:42+09:00</updated>
   <id>http://fruitymidnight.github.com/</id>
   <author>
     <name><![CDATA[Shin]]></name>
@@ -24,9 +24,9 @@
 
 <p>以下 markdown の記法を試してみます。</p>
 
-<h1>markdownの記法</h1>
+<h2>markdownの記法</h2>
 
-<h2>段落</h2>
+<h3>段落</h3>
 
 <p>１つ以上の連続した文字列。空行によって分けられる。
 これは別の段落とはみなされない。</p>
@@ -39,14 +39,19 @@
 これは別の段落になる。
 </code></pre>
 
-<h2>文字装飾</h2>
+<h3>文字装飾</h3>
 
 <p>文字の<em>強調</em>、<em>下線</em>、/斜線/、</p>
 
 <pre><code>*強調*
 </code></pre>
 
-<h2>見出し</h2>
+<h3>コード</h3>
+
+<p>コードの記載には文頭に4つ以上の空白をいれる。
+文章中にいれるときは<code>\</code>コード&#8220;と記載する。</p>
+
+<h3>見出し</h3>
 
 <p>文章の見出し。</p>
 
@@ -55,7 +60,7 @@
 ### 見出し３
 </code></pre>
 
-<h1>#</h1>
+<h2>#</h2>
 
 <p>文中で引用<code>引用</code></p>
 ]]></content>
