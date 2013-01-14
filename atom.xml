@@ -4,7 +4,7 @@
   <title><![CDATA[Shin's Github Blog]]></title>
   <link href="http://fruitymidnight.github.com/atom.xml" rel="self"/>
   <link href="http://fruitymidnight.github.com/"/>
-  <updated>2013-01-14T11:36:53+09:00</updated>
+  <updated>2013-01-14T11:53:55+09:00</updated>
   <id>http://fruitymidnight.github.com/</id>
   <author>
     <name><![CDATA[Shin]]></name>
@@ -20,22 +20,42 @@
     <id>http://fruitymidnight.github.com/blog/2013/01/14/first-post</id>
     <content type="html"><![CDATA[<p>Github を利用してブログを書くことができる、とのことなのでテスト。</p>
 
-<p>ファイルの管理は git 、記法は markdown を利用できるとのことなので勉強用にいいかなと思っています。</p>
+<p>ファイルの管理は git 、記法は markdown を利用できるので、どちらも勉強中の私にはちょうどいいかなと思っています。</p>
 
 <p>以下 markdown の記法を試してみます。</p>
 
-<h1>見出し１</h1>
+<h1>markdownの記法</h1>
+
+<h2>段落</h2>
+
+<p>１つ以上の連続した文字列。空行によって分けられる。
+これは別の段落とはみなされない。</p>
+
+<p>これは別の段落になる。</p>
+
+<pre><code>１つ以上の連続した文字列。空行によって分けられる。
+これは別の段落とはみなされない。
+
+これは別の段落になる。
+</code></pre>
+
+<h2>文字装飾</h2>
+
+<p>文字の<em>強調</em>、<em>下線</em>、/斜線/、</p>
+
+<pre><code>*強調*
+</code></pre>
+
+<h2>見出し</h2>
+
+<p>文章の見出し。</p>
 
 <pre><code># 見出し１
 ## 見出し２
 ### 見出し３
 </code></pre>
 
-<p>で見出し。</p>
-
-<h2>見出し２</h2>
-
-<h3>見出し３</h3>
+<h1>#</h1>
 
 <p>文中で引用<code>引用</code></p>
 ]]></content>
