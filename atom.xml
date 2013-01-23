@@ -4,7 +4,7 @@
   <title><![CDATA[Shin's Github Blog]]></title>
   <link href="http://fruitymidnight.github.com/atom.xml" rel="self"/>
   <link href="http://fruitymidnight.github.com/"/>
-  <updated>2013-01-14T16:46:59+09:00</updated>
+  <updated>2013-01-24T00:03:58+09:00</updated>
   <id>http://fruitymidnight.github.com/</id>
   <author>
     <name><![CDATA[Shin]]></name>
@@ -12,6 +12,37 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[LocalSocket]]></title>
+    <link href="http://fruitymidnight.github.com/blog/2013/01/19/localsocket/"/>
+    <updated>2013-01-19T22:02:00+09:00</updated>
+    <id>http://fruitymidnight.github.com/blog/2013/01/19/localsocket</id>
+    <content type="html"><![CDATA[<p>通信プログラム。</p>
+
+<p>通信プログラムで参考にしているのだけど bzero() などを使用している。
+manpage を見ると廃止予定と記載されているので注意。</p>
+
+<blockquote><p>4.3BSD. この関数は廃止予定である (POSIX.1-2001 では 過去の名残 (LEGACY) とされている)。新しいプログラムでは memset(3) を使用すべきである。 POSIX.1-2008 では bzero() の仕様が削除されている。</p></blockquote>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="c1">//#include &lt;strings.h&gt;</span>
+</span><span class='line'><span class="c1">//#include &lt;string.h&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">//bzeroは廃止予定なのでmemsetに置き換える</span>
+</span><span class='line'><span class="c1">//bzero(&amp;server, sizeof(server));</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">memset</span><span class="p">(</span><span class="o">&amp;</span><span class="n">server</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">server</span><span class="p">));</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Github Pages でブログ]]></title>
@@ -23,6 +54,9 @@
 <p>ファイルの管理は git 、記法は markdown を利用できるので、どちらも勉強中の私にはちょうどいいかなと思っています。</p>
 
 <p>以下 markdown の記法を試してみます。</p>
+
+<!-- more -->
+
 
 <h2>markdownの記法</h2>
 

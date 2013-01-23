@@ -2,15 +2,19 @@
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
         <loc>http://fruitymidnight.github.com/blog/2013/01/14/first-post/</loc>
-        <lastmod>2013-01-14T16:36:06+09:00</lastmod>
+        <lastmod>2013-01-14T17:44:15+09:00</lastmod>
+    </url>
+    <url>
+        <loc>http://fruitymidnight.github.com/blog/2013/01/19/localsocket/</loc>
+        <lastmod>2013-01-23T21:16:10+09:00</lastmod>
     </url>
     <url>
         <loc>http://fruitymidnight.github.com/blog/archives/</loc>
-        <lastmod>2013-01-14T16:36:06+09:00</lastmod>
+        <lastmod>2013-01-23T21:16:10+09:00</lastmod>
     </url>
     <url>
         <loc>http://fruitymidnight.github.com/</loc>
-        <lastmod>2013-01-14T16:36:06+09:00</lastmod>
+        <lastmod>2013-01-23T21:16:10+09:00</lastmod>
     </url>
     <url>
         <loc>http://fruitymidnight.github.com/robots.txt</loc>
