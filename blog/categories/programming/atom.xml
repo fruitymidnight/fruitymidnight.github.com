@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Programming | Shin's Github Blog]]></title>
+  <link href="http://fruitymidnight.github.com/blog/categories/programming/atom.xml" rel="self"/>
+  <link href="http://fruitymidnight.github.com/"/>
+  <updated>2013-02-17T21:18:37+09:00</updated>
+  <id>http://fruitymidnight.github.com/</id>
+  <author>
+    <name><![CDATA[Shin]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[SpannableStringBuilder SPAN_EXCLUSIVE_EXCLUSIVE spans cannot have a zero length]]></title>
+    <link href="http://fruitymidnight.github.com/blog/2013/02/17/android-programming-memo-20130217/"/>
+    <updated>2013-02-17T16:45:00+09:00</updated>
+    <id>http://fruitymidnight.github.com/blog/2013/02/17/android-programming-memo-20130217</id>
+    <content type="html"><![CDATA[<p>EditTextから入力文字を取得するために下記のようなコードを書いた。
+<code>java
+EditText inputField = (EditText)findViewById(id.editText2);
+SpannableStringBuilder sb = (SpannableStringBuilder)inputField.getText();
+</code></p>
+
+<p>動作自体はするけど、LogCatで次のようなエラーが出て気持ち悪い。</p>
+
+<pre><code>SpannableStringBuilder SPAN_EXCLUSIVE_EXCLUSIVE spans cannot have a zero length
+</code></pre>
+
+<p>stackoverflowで<a href="http://stackoverflow.com/questions/13670374/android-span-exclusive-exclusive-spans-cannot-have-a-zero-length" title="stackoverflow">同じような質問</a>があった]ので、inputTypeを<code>textEmailAddress|textNoSuggestions</code>とするも解決せず。
+最後の回答の通り、入力方法をgoogle日本語入力から標準のものにしたら出なくなった。
+謎だけど機能的には問題ないので無視する。</p>
+
+<ul>
+<li>Nexus 7</li>
+<li>Android: 4.2.1</li>
+<li>Google日本語入力: 1.6.1209.3</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[LocalSocket]]></title>
+    <link href="http://fruitymidnight.github.com/blog/2013/01/19/localsocket/"/>
+    <updated>2013-01-19T22:02:00+09:00</updated>
+    <id>http://fruitymidnight.github.com/blog/2013/01/19/localsocket</id>
+    <content type="html"><![CDATA[<p>通信プログラム。</p>
+
+<p>通信プログラムで参考にしているのだけど bzero() などを使用している。
+manpage を見ると廃止予定と記載されているので注意。</p>
+
+<blockquote><p>4.3BSD. この関数は廃止予定である (POSIX.1-2001 では 過去の名残 (LEGACY) とされている)。新しいプログラムでは memset(3) を使用すべきである。 POSIX.1-2008 では bzero() の仕様が削除されている。</p></blockquote>
+
+<p>```c</p>
+
+<pre><code>//#include &lt;strings.h&gt;
+//#include &lt;string.h&gt;
+
+//bzeroは廃止予定なのでmemsetに置き換える
+//bzero(&amp;server, sizeof(server));
+
+memset(&amp;server, 0, sizeof(server));
+</code></pre>
+
+<p>```</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -4,7 +4,7 @@
   <title><![CDATA[Shin's Github Blog]]></title>
   <link href="http://fruitymidnight.github.com/atom.xml" rel="self"/>
   <link href="http://fruitymidnight.github.com/"/>
-  <updated>2013-02-17T16:44:47+09:00</updated>
+  <updated>2013-02-17T21:18:37+09:00</updated>
   <id>http://fruitymidnight.github.com/</id>
   <author>
     <name><![CDATA[Shin]]></name>
@@ -12,6 +12,38 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[SpannableStringBuilder SPAN_EXCLUSIVE_EXCLUSIVE spans cannot have a zero length]]></title>
+    <link href="http://fruitymidnight.github.com/blog/2013/02/17/android-programming-memo-20130217/"/>
+    <updated>2013-02-17T16:45:00+09:00</updated>
+    <id>http://fruitymidnight.github.com/blog/2013/02/17/android-programming-memo-20130217</id>
+    <content type="html"><![CDATA[<p>EditTextから入力文字を取得するために下記のようなコードを書いた。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">EditText</span> <span class="n">inputField</span> <span class="o">=</span> <span class="o">(</span><span class="n">EditText</span><span class="o">)</span><span class="n">findViewById</span><span class="o">(</span><span class="n">id</span><span class="o">.</span><span class="na">editText2</span><span class="o">);</span>
+</span><span class='line'><span class="n">SpannableStringBuilder</span> <span class="n">sb</span> <span class="o">=</span> <span class="o">(</span><span class="n">SpannableStringBuilder</span><span class="o">)</span><span class="n">inputField</span><span class="o">.</span><span class="na">getText</span><span class="o">();</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>動作自体はするけど、LogCatで次のようなエラーが出て気持ち悪い。</p>
+
+<pre><code>SpannableStringBuilder SPAN_EXCLUSIVE_EXCLUSIVE spans cannot have a zero length
+</code></pre>
+
+<p>stackoverflowで<a href="http://stackoverflow.com/questions/13670374/android-span-exclusive-exclusive-spans-cannot-have-a-zero-length" title="stackoverflow">同じような質問</a>があった]ので、inputTypeを<code>textEmailAddress|textNoSuggestions</code>とするも解決せず。
+最後の回答の通り、入力方法をgoogle日本語入力から標準のものにしたら出なくなった。
+謎だけど機能的には問題ないので無視する。</p>
+
+<ul>
+<li>Nexus 7</li>
+<li>Android: 4.2.1</li>
+<li>Google日本語入力: 1.6.1209.3</li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[LocalSocket]]></title>
