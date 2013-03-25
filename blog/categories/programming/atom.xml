@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Programming | Shin's Github Blog]]></title>
   <link href="http://fruitymidnight.github.com/blog/categories/programming/atom.xml" rel="self"/>
   <link href="http://fruitymidnight.github.com/"/>
-  <updated>2013-02-17T23:34:26+09:00</updated>
+  <updated>2013-03-26T00:40:22+09:00</updated>
   <id>http://fruitymidnight.github.com/</id>
   <author>
     <name><![CDATA[Shin]]></name>
@@ -12,6 +12,17 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[apple-secure-coding-guideline]]></title>
+    <link href="http://fruitymidnight.github.com/blog/2013/03/26/apple-secure-coding-guideline/"/>
+    <updated>2013-03-26T00:22:00+09:00</updated>
+    <id>http://fruitymidnight.github.com/blog/2013/03/26/apple-secure-coding-guideline</id>
+    <content type="html"><![CDATA[<p>Apple のセキュアコーディングガイドのチェックリストだけを訳してみました。</p>
+
+<p>まだ途中で、直訳ですが<a href="/apple-secure-coding-guideline/" title="Secure Coding Guide">このページで公開</a> します。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[SpannableStringBuilder SPAN_EXCLUSIVE_EXCLUSIVE spans cannot have a zero length]]></title>
