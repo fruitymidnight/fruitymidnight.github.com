@@ -719,24 +719,77 @@ Passwords must be kept in memory for the minimum amount of time possible and sho
 
 <h1>整数／バッファオーバーフロー <!-- Integer and Buffer Overflows --></h1>
 
-<p>As discussed in “Avoiding Buffer Overflows And Underflows,” buffer overflows are a major source of security vulnerabilities. This checklist is intended to help you identify and correct buffer overflows in your program.</p>
+<!-- As discussed in “Avoiding Buffer Overflows And Underflows,” buffer overflows are a major source of security vulnerabilities. This checklist is intended to help you identify and correct buffer overflows in your program. -->
 
-<p>Use unsigned values when calculating memory object offsets and sizes.
-Signed values make it easier for an attacker to cause a buffer overflow, creating a security vulnerability, especially if your application accepts signed values from user input or other outside sources.</p>
 
-<p>Be aware that data structures referenced in parameters might contain signed values.</p>
 
-<p>See “Avoiding Integer Overflows And Underflows” and “Calculating Buffer Sizes” for details.</p>
 
-<p>Check for integer overflows (or signed integer underflows) when calculating memory object offsets and sizes.
-You must always check for integer overflows or underflows when calculating memory offsets or sizes. Integer overflows and underflows can corrupt memory in ways that can lead to execution of arbitrary code.</p>
+<!-- Use unsigned values when calculating memory object offsets and sizes. -->
 
-<p>See “Avoiding Integer Overflows And Underflows” and “Calculating Buffer Sizes” for details.</p>
 
-<p>Avoid unsafe string-handling functions.
-The functions strcat, strcpy, strncat, strncpy, sprintf, vsprintf, gets have no built-in checks for string length, and can lead to buffer overflows.</p>
+<!-- Signed values make it easier for an attacker to cause a buffer overflow, creating a security vulnerability, especially if your application accepts signed values from user input or other outside sources. -->
 
-<p>For alternatives, read “String Handling.”</p>
+
+
+
+<!-- Be aware that data structures referenced in parameters might contain signed values. -->
+
+
+
+
+<!-- See “Avoiding Integer Overflows And Underflows” and “Calculating Buffer Sizes” for details. -->
+
+
+
+
+<!-- Check for integer overflows (or signed integer underflows) when calculating memory object offsets and sizes. -->
+
+
+<!-- You must always check for integer overflows or underflows when calculating memory offsets or sizes. Integer overflows and underflows can corrupt memory in ways that can lead to execution of arbitrary code. -->
+
+
+
+
+<!-- See “Avoiding Integer Overflows And Underflows” and “Calculating Buffer Sizes” for details. -->
+
+
+
+
+<!-- Avoid unsafe string-handling functions. -->
+
+
+<!-- The functions strcat, strcpy, strncat, strncpy, sprintf, vsprintf, gets have no built-in checks for string length, and can lead to buffer overflows. -->
+
+
+
+
+<!-- For alternatives, read “String Handling.” -->
+
+
+<p>&#8220;Avoiding Buffer Overflows And Underflows&#8221; で説明しているように、バッファオーバーフローはセキュリティ脆弱性の主な原因です。
+このチェックリストはあなたのプログラムのバッファオーバーフローを確認・修正する一助になることを意図しています。</p>
+
+<ol>
+<li><p>メモリオブジェクトのオフセットやサイズを計算するときは符号なしの値を使用すること</p>
+
+<p> 符号付きの値はアタッカーにとって、特にユーザ入力や外部ソースから符号付きの値を受け入れる場合に、バッファオーバーフローやセキュリティ脆弱性を引き起こすのが容易である。</p>
+
+<p> パラメータで参照するデータ構造に符号付きの値が含まれているか気をつけてください。</p>
+
+<p> 詳細は &#8220;Avoiding Integer Overflows And Underflows&#8221; と &#8220;Calculating Buffer Sizes&#8221; を参照してください。</p></li>
+<li><p>メモリオブジェクトのオフセットやサイズを計算するときは整数オーバーフロー（もしくは符号付き整数アンダーフロー）のチェックをすること</p>
+
+<p> メモリオフセットやサイズを計算するときは常に整数オーバーフローかアンダーフローを常にチェックする必要がある。
+ 整数オーバーフローやアンダーフローはメモリ破壊をし、任意のコードを実行を可能とする。</p>
+
+<p> 詳細は &#8220;Avoiding Integer Overflows And Underflows&#8221; と &#8220;Calculating Buffer Sizes&#8221; を参照してくだい。</p></li>
+<li><p>危険な文字列操作関数を避けること</p>
+
+<p> <em>strcat</em>, <em>strcpy</em>, <em>strncat</em>, <em>strncpy</em>, <em>sprintf</em>, <em>vsprintf</em>, <em>gets</em> 関数は文字長のチェックがビルトインで持たず、バッファオーバーフローの原因となる。</p>
+
+<p> 代替手段は &#8220;String Handling.&#8221; を読んでください。</p></li>
+</ol>
+
 
 <h1>暗号関数の使用 <!-- Cryptographic Function Use --></h1>
 
