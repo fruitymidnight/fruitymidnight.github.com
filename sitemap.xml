@@ -1,34 +1,42 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
+        <loc>http://fruitymidnight.github.com/blog/2011/06/01/this-is-a-test/</loc>
+        <lastmod>2013-06-30T17:33:32+09:00</lastmod>
+    </url>
+    <url>
         <loc>http://fruitymidnight.github.com/blog/2013/01/14/first-post/</loc>
-        <lastmod>2013-01-14T17:44:15+09:00</lastmod>
+        <lastmod>2013-06-30T17:33:32+09:00</lastmod>
     </url>
     <url>
         <loc>http://fruitymidnight.github.com/blog/2013/01/19/localsocket/</loc>
-        <lastmod>2013-02-17T18:52:15+09:00</lastmod>
+        <lastmod>2013-06-30T17:33:32+09:00</lastmod>
     </url>
     <url>
         <loc>
             http://fruitymidnight.github.com/blog/2013/02/17/android-programming-memo-20130217/
         </loc>
-        <lastmod>2013-02-17T18:52:04+09:00</lastmod>
+        <lastmod>2013-06-30T17:33:32+09:00</lastmod>
     </url>
     <url>
         <loc>http://fruitymidnight.github.com/blog/2013/03/26/apple-secure-coding-guideline/</loc>
-        <lastmod>2013-03-26T00:40:22+09:00</lastmod>
+        <lastmod>2013-06-30T17:33:32+09:00</lastmod>
     </url>
     <url>
         <loc>http://fruitymidnight.github.com/apple-secure-coding-guideline/</loc>
-        <lastmod>2013-03-31T22:24:33+09:00</lastmod>
+        <lastmod>2013-06-30T17:33:32+09:00</lastmod>
     </url>
     <url>
         <loc>http://fruitymidnight.github.com/blog/archives/</loc>
-        <lastmod>2013-03-26T00:40:22+09:00</lastmod>
+        <lastmod>2013-06-30T17:33:32+09:00</lastmod>
     </url>
     <url>
         <loc>http://fruitymidnight.github.com/</loc>
-        <lastmod>2013-03-26T00:40:22+09:00</lastmod>
+        <lastmod>2013-06-30T17:33:32+09:00</lastmod>
+    </url>
+    <url>
+        <loc>http://fruitymidnight.github.com/projects/</loc>
+        <lastmod>2013-06-30T17:33:32+09:00</lastmod>
     </url>
     <url>
         <loc>http://fruitymidnight.github.com/robots.txt</loc>
