@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: awesome-sauce | Shin's Github Blog]]></title>
-  <link href="http://fruitymidnight.github.com/blog/categories/awesome-sauce/atom.xml" rel="self"/>
-  <link href="http://fruitymidnight.github.com/"/>
-  <updated>2013-06-30T18:59:44+09:00</updated>
-  <id>http://fruitymidnight.github.com/</id>
+  <title><![CDATA[Category: awesome-sauce | Shin's blog]]></title>
+  <link href="http://fruitymidnight.github.io/blog/categories/awesome-sauce/atom.xml" rel="self"/>
+  <link href="http://fruitymidnight.github.io/"/>
+  <updated>2013-06-30T20:58:35+09:00</updated>
+  <id>http://fruitymidnight.github.io/</id>
   <author>
     <name><![CDATA[Shin]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[This is post]]></title>
-    <link href="http://fruitymidnight.github.com/blog/2011/06/01/this-is-a-test/"/>
+    <link href="http://fruitymidnight.github.io/blog/2011/06/01/this-is-a-test/"/>
     <updated>2011-06-01T14:44:00+09:00</updated>
-    <id>http://fruitymidnight.github.com/blog/2011/06/01/this-is-a-test</id>
+    <id>http://fruitymidnight.github.io/blog/2011/06/01/this-is-a-test</id>
     <content type="html"><![CDATA[<p>Booyah!</p>
 ]]></content>
   </entry>

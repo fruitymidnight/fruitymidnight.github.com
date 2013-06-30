@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: 
 
-Sitemap: http://fruitymidnight.github.com/sitemap.xml 
+Sitemap: http://fruitymidnight.github.io/sitemap.xml 
