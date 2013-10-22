@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Shin's blog]]></title>
+  <link href="http://fruitymidnight.github.io/atom.xml" rel="self"/>
+  <link href="http://fruitymidnight.github.io/"/>
+  <updated>2013-10-23T00:06:30+09:00</updated>
+  <id>http://fruitymidnight.github.io/</id>
+  <author>
+    <name><![CDATA[Shin]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[apple-secure-coding-guideline]]></title>
+    <link href="http://fruitymidnight.github.io/blog/2013/03/26/apple-secure-coding-guideline/"/>
+    <updated>2013-03-26T00:22:00+09:00</updated>
+    <id>http://fruitymidnight.github.io/blog/2013/03/26/apple-secure-coding-guideline</id>
+    <content type="html"><![CDATA[<p>Apple のセキュアコーディングガイドのチェックリストだけを訳してみました。</p>
+
+<p>まだ途中で、直訳ですが<a href="http://fruitymidnight.github.io/apple-secure-coding-guideline/" title="Secure Coding Guide">このページで公開</a> します。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[SpannableStringBuilder SPAN_EXCLUSIVE_EXCLUSIVE spans cannot have a zero length]]></title>
+    <link href="http://fruitymidnight.github.io/blog/2013/02/17/android-programming-memo-20130217/"/>
+    <updated>2013-02-17T16:45:00+09:00</updated>
+    <id>http://fruitymidnight.github.io/blog/2013/02/17/android-programming-memo-20130217</id>
+    <content type="html"><![CDATA[<p>EditTextから入力文字を取得するために下記のようなコードを書いた。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">EditText</span> <span class="n">inputField</span> <span class="o">=</span> <span class="o">(</span><span class="n">EditText</span><span class="o">)</span><span class="n">findViewById</span><span class="o">(</span><span class="n">id</span><span class="o">.</span><span class="na">editText2</span><span class="o">);</span>
+</span><span class='line'><span class="n">SpannableStringBuilder</span> <span class="n">sb</span> <span class="o">=</span> <span class="o">(</span><span class="n">SpannableStringBuilder</span><span class="o">)</span><span class="n">inputField</span><span class="o">.</span><span class="na">getText</span><span class="o">();</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>動作自体はするけど、LogCatで次のようなエラーが出て気持ち悪い。</p>
+
+<pre><code>SpannableStringBuilder SPAN_EXCLUSIVE_EXCLUSIVE spans cannot have a zero length
+</code></pre>
+
+<p>stackoverflowで<a href="http://stackoverflow.com/questions/13670374/android-span-exclusive-exclusive-spans-cannot-have-a-zero-length" title="stackoverflow">同じような質問</a>があった]ので、inputTypeを<code>textEmailAddress|textNoSuggestions</code>とするも解決せず。
+最後の回答の通り、入力方法をgoogle日本語入力から標準のものにしたら出なくなった。
+謎だけど機能的には問題ないので無視する。</p>
+
+<ul>
+<li>Nexus 7</li>
+<li>Android: 4.2.1</li>
+<li>Google日本語入力: 1.6.1209.3</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[LocalSocket]]></title>
+    <link href="http://fruitymidnight.github.io/blog/2013/01/19/localsocket/"/>
+    <updated>2013-01-19T22:02:00+09:00</updated>
+    <id>http://fruitymidnight.github.io/blog/2013/01/19/localsocket</id>
+    <content type="html"><![CDATA[<p>通信プログラム。</p>
+
+<p>通信プログラムで参考にしているのだけど bzero() などを使用している。
+manpage を見ると廃止予定と記載されているので注意。</p>
+
+<blockquote><p>4.3BSD. この関数は廃止予定である (POSIX.1-2001 では 過去の名残 (LEGACY) とされている)。新しいプログラムでは memset(3) を使用すべきである。 POSIX.1-2008 では bzero() の仕様が削除されている。</p></blockquote>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="c1">//#include &lt;strings.h&gt;</span>
+</span><span class='line'><span class="c1">//#include &lt;string.h&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">//bzeroは廃止予定なのでmemsetに置き換える</span>
+</span><span class='line'><span class="c1">//bzero(&amp;server, sizeof(server));</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">memset</span><span class="p">(</span><span class="o">&amp;</span><span class="n">server</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">server</span><span class="p">));</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Github Pages でブログ]]></title>
+    <link href="http://fruitymidnight.github.io/blog/2013/01/14/first-post/"/>
+    <updated>2013-01-14T01:53:00+09:00</updated>
+    <id>http://fruitymidnight.github.io/blog/2013/01/14/first-post</id>
+    <content type="html"><![CDATA[<p>Github を利用してブログを書くことができる、とのことなのでテスト。</p>
+
+<p>ファイルの管理は git 、記法は markdown を利用できるので、どちらも勉強中の私にはちょうどいいかなと思っています。</p>
+
+<p>以下 markdown の記法を試してみます。</p>
+
+<!-- more -->
+
+
+<h2>markdownの記法</h2>
+
+<h3>段落</h3>
+
+<p>１つ以上の連続した文字列。空行によって分けられる。
+これは別の段落とはみなされない。</p>
+
+<p>これは別の段落になる。</p>
+
+<pre><code>１つ以上の連続した文字列。空行によって分けられる。
+これは別の段落とはみなされない。
+
+これは別の段落になる。
+</code></pre>
+
+<h3>文字装飾</h3>
+
+<p>文字の<em>強調</em>、<em>アンダーバー</em>。<strong>強い強調</strong>、<strong>アンダーバー</strong>。</p>
+
+<pre><code>*強調*、_アンダーバー_。**強い強調**、__アンダーバー__。
+</code></pre>
+
+<h3>コード</h3>
+
+<p>コードの記載には文頭に4つ以上の空白をいれる。
+文章中にいれるときはバッククォートを使用して<code>`コード`</code>と記載する。</p>
+
+<p>バッククォート３個つなげる方法もある。この場合は行数表示とシンタックスハイライトが適用される。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="kt">int</span> <span class="nf">main</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Hello World.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<pre><code>``` c
+int main (void)
+{
+    printf("Hello World.\n");
+}
+```
+</code></pre>
+
+<h3>見出し</h3>
+
+<p>文章の見出し。</p>
+
+<pre><code># 見出し１
+## 見出し２
+### 見出し３
+</code></pre>
+
+<h3>引用</h3>
+
+<blockquote><p>引用する場合は &#8220;>&#8221; を利用する。</p></blockquote>
+
+<!-- dummy comment line for breaking quote -->
+
+
+<blockquote><p>複数行も引用できるけど<br/>
+途中で改行させたいときは行尾に空白２つが必要</p></blockquote>
+
+<!-- dummy comment line for breaking quote -->
+
+
+<blockquote><p>入れ子</p>
+
+<blockquote><p>も可能</p></blockquote>
+
+<p>だけど前後に改行が必要</p></blockquote>
+
+<!-- dummy comment line for breaking quote -->
+
+
+<blockquote><p>複数行を
+引用しても行頭に入れれば大丈夫。</p>
+
+<p>途中で空行があっても改めて &#8220;>&#8221; を行頭に入れることで対応可能</p></blockquote>
+
+<pre><code>&gt; 引用する場合は "&gt;" を利用する。
+
+&lt;!-- dummy comment line for breaking quote --&gt;
+
+&gt; 複数行も引用できるけど  
+&gt; 途中で改行させたいときは行尾に空白２つが必要
+
+&lt;!-- dummy comment line for breaking quote --&gt;
+
+&gt; 入れ子  
+&gt;
+&gt; &gt; も可能
+&gt;
+&gt; だけど前後に改行が必要
+
+&lt;!-- dummy comment line for breaking quote --&gt;
+
+&gt; 複数行を
+引用しても行頭に入れれば大丈夫。
+
+&gt; 途中で空行があっても改めて "&gt;" を行頭に入れることで対応可能
+</code></pre>
+
+<h3>区切り</h3>
+
+<p><code>***</code> や <code>---</code> を３個以上つなげると hr 要素となる</p>
+
+<hr />
+
+<hr />
+
+<hr />
+
+<h3>リスト</h3>
+
+<p>リストは <code>-</code> や <code>*</code> を行頭につけることで実現可能。入れ子もできる。</p>
+
+<ul>
+<li>番号なしリスト
+
+<ul>
+<li>番号なしリスト２</li>
+</ul>
+</li>
+<li>番号なしリスト３</li>
+</ul>
+
+
+<!-- dummy comment line for breaking list -->
+
+
+<ul>
+<li>番号なしリスト
+
+<ul>
+<li>番号なしリスト２</li>
+</ul>
+</li>
+<li>番号なしリスト３</li>
+</ul>
+
+
+<!-- dummy comment line for breaking list -->
+
+
+<ol>
+<li>番号つきリスト</li>
+<li>番号つきリスト２</li>
+<li>番号つきリスト３</li>
+</ol>
+
+
+<!-- dummy comment line for breaking list -->
+
+
+<pre><code>- 番号なしリスト
+  - 番号なしリスト２
+- 番号なしリスト３
+
+&lt;!-- dummy comment line for breaking list --&gt;
+
+* 番号なしリスト
+  * 番号なしリスト２
+* 番号なしリスト３
+
+&lt;!-- dummy comment line for breaking list --&gt;
+
+1. 番号つきリスト
+2. 番号つきリスト２
+3. 番号つきリスト３
+</code></pre>
+
+<h3>リンク</h3>
+
+<p>インラインで記載する方法と、リンク情報は後から参照させる方法がある。</p>
+
+<p>私の先生は <a href="http://www.google.com/" title="Title">Google</a> 先生だけです。
+昔 <a href="http://www.yahoo.com/" title="Title2">Yahoo</a> にはお世話になりました。</p>
+
+<pre><code>私の先生は [Google](http://www.google.com/ "Title") 先生だけです。
+昔 [Yahoo][1] にはお世話になりました。
+
+[1]: http://www.yahoo.com/ "Title2"
+</code></pre>
+
+<h3>画像</h3>
+
+<p>画像を表示させるにはリンクの前に <code>!</code> を付与する。</p>
+
+<p><img src="https://dl.dropbox.com/u/464501/2013-01-14/piyo.jpg" title="piyopiyo" alt="画像の内容説明" /></p>
+
+<p><img src="https://dl.dropbox.com/u/464501/2013-01-14/piyo.jpg" title="piyo" alt="画像の内容説明" /></p>
+
+<pre><code>![画像の内容説明](https://dl.dropbox.com/u/464501/2013-01-14/piyo.jpg "piyopiyo")
+
+![画像の内容説明][link_id]
+[link_id]: https://dl.dropbox.com/u/464501/2013-01-14/piyo.jpg "piyo"
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[This is post]]></title>
+    <link href="http://fruitymidnight.github.io/blog/2011/06/01/this-is-a-test/"/>
+    <updated>2011-06-01T14:44:00+09:00</updated>
+    <id>http://fruitymidnight.github.io/blog/2011/06/01/this-is-a-test</id>
+    <content type="html"><![CDATA[<p>Booyah!</p>
+]]></content>
+  </entry>
+  
+</feed>
