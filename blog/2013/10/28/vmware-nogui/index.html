@@ -4,7 +4,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Shin's blog</title>
+  <title>VMWare Fusion 上の仮想マシンをヘッドレスモードで動作させる方法 - Shin's blog</title>
   <meta name="author" content="Shin">
 
   
@@ -16,7 +16,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://fruitymidnight.github.io">
+  <link rel="canonical" href="http://fruitymidnight.github.io/blog/2013/10/28/vmware-nogui">
   <link href="/favicon.png" type="image/png" rel="icon">
   <link href="/atom.xml" rel="alternate" title="Shin's blog" type="application/atom+xml">
 
@@ -80,12 +80,8 @@
         <div id="content">
           <div class="row">
   <div class="page-content col-md-9">
-    <div class="blog-index">
+    <article class="hentry" role="article">
       
-      
-      
-        <article class="post">
-          
   <header class="page-header">
     
       <p class="meta text-muted text-uppercase">
@@ -107,12 +103,15 @@
       </p>
     
     
-      <h1 class="entry-title"><a href="/blog/2013/10/28/vmware-nogui/">VMWare Fusion 上の仮想マシンをヘッドレスモードで動作させる方法</a></h1>
+    <h1 class="entry-title">
+        VMWare Fusion 上の仮想マシンをヘッドレスモードで動作させる方法
+        
+    </h1>
     
   </header>
 
 
-  <div class="entry-content clearfix"><h2>ヘッドレスモードとは？</h2>
+<div class="entry-content clearfix"><h2>ヘッドレスモードとは？</h2>
 
 <p>VMWare Fusion で仮想マシンを動作させようとすると GUI が起動して、邪魔だな～、って瞬間が結構あります。Windows を動作させてるときは気にならないのですが、Linux や FreeBSDだと ssh でログインして動かしたほうが使いやすいし、コンソール自体が必要なときは結構少ないです。</p>
 
@@ -192,58 +191,16 @@
 </span><span class='line'>&lt;/plist&gt;</span></code></pre></td></tr></table></div></figure>
 
 </div>
-  
-  
 
 
-        </article>
-      
-      
-        <article class="post">
+      <footer>
+        <p class="meta text-muted">
           
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-
-
-
-
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2013-03-26T00:22:00+09:00" pubdate data-updated="true">Mar 26<span>th</span>, 2013</time>
-        
-      </p>
-    
-    
-      <h1 class="entry-title"><a href="/blog/2013/03/26/apple-secure-coding-guideline/">Apple-secure-coding-guideline</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content clearfix"><p>Apple のセキュアコーディングガイドのチェックリストだけを訳してみました。</p>
-
-<p>まだ途中で、直訳ですが<a href="/apple-secure-coding-guideline/" title="Secure Coding Guide">このページで公開</a> します。</p>
-</div>
-  
   
 
+<span class="glyphicon glyphicon-user"></span> <span class="byline author vcard">Posted by <span class="fn">Shin</span></span>
 
-        </article>
-      
-      
-        <article class="post">
           
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
 
 
 
@@ -256,208 +213,53 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2013-02-17T16:45:00+09:00" pubdate data-updated="true">Feb 17<span>th</span>, 2013</time>
-        
-      </p>
-    
-    
-      <h1 class="entry-title"><a href="/blog/2013/02/17/android-programming-memo-20130217/">SpannableStringBuilder SPAN_EXCLUSIVE_EXCLUSIVE Spans Cannot Have a Zero Length</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content clearfix"><p>EditTextから入力文字を取得するために下記のようなコードを書いた。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">EditText</span> <span class="n">inputField</span> <span class="o">=</span> <span class="o">(</span><span class="n">EditText</span><span class="o">)</span><span class="n">findViewById</span><span class="o">(</span><span class="n">id</span><span class="o">.</span><span class="na">editText2</span><span class="o">);</span>
-</span><span class='line'><span class="n">SpannableStringBuilder</span> <span class="n">sb</span> <span class="o">=</span> <span class="o">(</span><span class="n">SpannableStringBuilder</span><span class="o">)</span><span class="n">inputField</span><span class="o">.</span><span class="na">getText</span><span class="o">();</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>動作自体はするけど、LogCatで次のようなエラーが出て気持ち悪い。</p>
-
-<pre><code>SpannableStringBuilder SPAN_EXCLUSIVE_EXCLUSIVE spans cannot have a zero length
-</code></pre>
-
-<p>stackoverflowで<a href="http://stackoverflow.com/questions/13670374/android-span-exclusive-exclusive-spans-cannot-have-a-zero-length" title="stackoverflow">同じような質問</a>があった]ので、inputTypeを<code>textEmailAddress|textNoSuggestions</code>とするも解決せず。
-最後の回答の通り、入力方法をgoogle日本語入力から標準のものにしたら出なくなった。
-謎だけど機能的には問題ないので無視する。</p>
-
-<ul>
-<li>Nexus 7</li>
-<li>Android: 4.2.1</li>
-<li>Google日本語入力: 1.6.1209.3</li>
-</ul>
-
-</div>
-  
-  
-
-
-        </article>
-      
-      
-        <article class="post">
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2013-10-28T21:44:00+09:00" pubdate data-updated="true">Oct 28<span>th</span>, 2013</time>
           
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/macos/'>MacOS</a>, <a class='category' href='/blog/categories/vmware/'>VMWare</a>
+  
+</span>
+
+
+        </p>
         
-
-
-
-
-
-
-
-
-
-
-
-
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2013-01-19T22:02:00+09:00" pubdate data-updated="true">Jan 19<span>th</span>, 2013</time>
-        
-      </p>
-    
-    
-      <h1 class="entry-title"><a href="/blog/2013/01/19/localsocket/">LocalSocket</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content clearfix"><p>通信プログラム。</p>
-
-<p>通信プログラムで参考にしているのだけど bzero() などを使用している。
-manpage を見ると廃止予定と記載されているので注意。</p>
-
-<blockquote><p>4.3BSD. この関数は廃止予定である (POSIX.1-2001 では 過去の名残 (LEGACY) とされている)。新しいプログラムでは memset(3) を使用すべきである。 POSIX.1-2008 では bzero() の仕様が削除されている。</p></blockquote>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="c1">//#include &lt;strings.h&gt;</span>
-</span><span class='line'><span class="c1">//#include &lt;string.h&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1">//bzeroは廃止予定なのでmemsetに置き換える</span>
-</span><span class='line'><span class="c1">//bzero(&amp;server, sizeof(server));</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">memset</span><span class="p">(</span><span class="o">&amp;</span><span class="n">server</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">server</span><span class="p">));</span>
-</span></code></pre></td></tr></table></div></figure>
-
+          <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://fruitymidnight.github.io/blog/2013/10/28/vmware-nogui/" data-via="fruitymidnight" data-counturl="http://fruitymidnight.github.io/blog/2013/10/28/vmware-nogui/" >Tweet</a>
+  
+  
+  
 </div>
-  
-  
 
-
-        </article>
-      
-      
-        <article class="post">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
         
-
-
-
-
-
-
-
-
-
-
-
-
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2013-01-14T01:53:00+09:00" pubdate data-updated="true">Jan 14<span>th</span>, 2013</time>
         
-      </p>
+          <ul class="meta text-muted pager">
+            
+            <li class="previous"><a href="/blog/2013/03/26/apple-secure-coding-guideline/" title="Previous Post: apple-secure-coding-guideline">&laquo; apple-secure-coding-guideline</a></li>
+            
+            
+          </ul>
+        
+      </footer>
+    </article>
     
-    
-      <h1 class="entry-title"><a href="/blog/2013/01/14/first-post/">Github Pages でブログ</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content clearfix"><p>Github を利用してブログを書くことができる、とのことなのでテスト。</p>
-
-<p>ファイルの管理は git 、記法は markdown を利用できるので、どちらも勉強中の私にはちょうどいいかなと思っています。</p>
-
-<p>以下 markdown の記法を試してみます。</p>
-
+      <section>
+        <h1>Comments</h1>
+        <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
-  
-  
-    <footer>
-      <a class="btn btn-default" rel="full-article" href="/blog/2013/01/14/first-post/">Read on &rarr;</a>
-    </footer>
-  
-
-
-        </article>
-      
-      
-        <article class="post">
-          
-  <header class="page-header">
+      </section>
     
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-
-
-
-
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2011-06-01T14:44:00+09:00" pubdate data-updated="true">Jun 1<span>st</span>, 2011</time>
-        
-      </p>
-    
-    
-      <h1 class="entry-title"><a href="/blog/2011/06/01/this-is-a-test/">This Is Post</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content clearfix"><p>Booyah!</p>
-</div>
-  
-  
-
-
-        </article>
-      
-    </div>
-
-    <ul class="pager">
-      
-        <li class="previous disabled"><a href="#">&larr;&nbsp;Older</a></li>
-      
-      <li><a href="/blog/archives">Blog Archives</a></li>
-      
-        <li class="next disabled"><a href="#">Newer&nbsp;&rarr;</a></li>
-      
-    </ul>
   </div>
 
   
-    <aside class="sidebar col-md-3">
+  <aside class="sidebar col-md-3">
+    
       
-        
-      
-    </aside>
+    
+  </aside>
   
 </div>
 
@@ -483,7 +285,10 @@ manpage を見ると廃止予定と記載されているので注意。</p>
       var disqus_shortname = 'shin-github-blog';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://fruitymidnight.github.io/blog/2013/10/28/vmware-nogui/';
+        var disqus_url = 'http://fruitymidnight.github.io/blog/2013/10/28/vmware-nogui/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: VMWare | Shin's blog]]></title>
+  <link href="http://fruitymidnight.github.io/blog/categories/vmware/atom.xml" rel="self"/>
+  <link href="http://fruitymidnight.github.io/"/>
+  <updated>2013-10-28T22:32:15+09:00</updated>
+  <id>http://fruitymidnight.github.io/</id>
+  <author>
+    <name><![CDATA[Shin]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[VMWare Fusion 上の仮想マシンをヘッドレスモードで動作させる方法]]></title>
+    <link href="http://fruitymidnight.github.io/blog/2013/10/28/vmware-nogui/"/>
+    <updated>2013-10-28T21:44:00+09:00</updated>
+    <id>http://fruitymidnight.github.io/blog/2013/10/28/vmware-nogui</id>
+    <content type="html"><![CDATA[<h2>ヘッドレスモードとは？</h2>
+
+<p>VMWare Fusion で仮想マシンを動作させようとすると GUI が起動して、邪魔だな～、って瞬間が結構あります。Windows を動作させてるときは気にならないのですが、Linux や FreeBSDだと ssh でログインして動かしたほうが使いやすいし、コンソール自体が必要なときは結構少ないです。</p>
+
+<p>また、仮想マシンをサーバとして動作させたいときも、ログインのたびに VMWare を起動して…というのはめんどくさいです。</p>
+
+<p>VMWare にはCUIコマンドが用意されていて、GUI無し（ヘッドレスモード）で動作させることができます。</p>
+
+<p><code>
+/Applications/VMware Fusion.app/Contents/Library/vmrun -T fusion start /path/to/Your VM/hoge.vmx nogui
+</code></p>
+
+<h2>Mac 起動時に仮想マシンを動作させる方法</h2>
+
+<p>MACOSX の init である launchd の設定ファイルを記載します。
+僕は下記のような設定ファイルを書いて、<code>/Library/LaunchDaemons/</code> 上に <code>vmware.freebsd.plist</code> として保存しました。
+その後 <code>$ sudo launchctl load /Library/LaunchDaemons/vmware.freebsd.plist</code> として登録。</p>
+
+<p>登録削除するには <code>$ sudo launchctl remove vmware.freebsd</code> として、ファイルを削除。</p>
+
+<p>```
+&lt;?xml version="1.0" encoding="UTF-8"?>
+&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict></p>
+
+<pre><code>&lt;key&gt;Label&lt;/key&gt;
+&lt;string&gt;vmware.freebsd&lt;/string&gt;
+&lt;key&gt;RunAtLoad&lt;/key&gt;
+&lt;true/&gt;
+&lt;key&gt;ProgramArguments&lt;/key&gt;
+&lt;array&gt;
+    &lt;string&gt;/Applications/VMware Fusion.app/Contents/Library/vmrun&lt;/string&gt;
+    &lt;string&gt;-T&lt;/string&gt;
+    &lt;string&gt;fusion&lt;/string&gt;
+    &lt;string&gt;start&lt;/string&gt;
+    &lt;string&gt;/path/to/Your VM/FreeBSD.vmx&lt;/string&gt;
+    &lt;string&gt;nogui&lt;/string&gt;
+&lt;/array&gt;
+&lt;key&gt;KeepAlive&lt;/key&gt;
+&lt;false/&gt;
+&lt;key&gt;RunAtLoad&lt;/key&gt;
+&lt;true/&gt;
+&lt;key&gt;UserName&lt;/key&gt;
+&lt;string&gt;Your User Name&lt;/string&gt;
+&lt;key&gt;StandardErrorPath&lt;/key&gt;
+&lt;string&gt;/dev/null&lt;/string&gt;
+&lt;key&gt;StandardOutPath&lt;/key&gt;
+&lt;string&gt;/dev/null&lt;/string&gt;
+</code></pre>
+
+<p></dict>
+</plist>
+```</p>
+]]></content>
+  </entry>
+  
+</feed>
