@@ -4,7 +4,7 @@
   <title><![CDATA[Shin's blog]]></title>
   <link href="http://fruitymidnight.github.io/atom.xml" rel="self"/>
   <link href="http://fruitymidnight.github.io/"/>
-  <updated>2013-10-28T22:32:15+09:00</updated>
+  <updated>2013-11-03T18:17:06+09:00</updated>
   <id>http://fruitymidnight.github.io/</id>
   <author>
     <name><![CDATA[Shin]]></name>
@@ -12,6 +12,370 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[MacOSのTex環境導入]]></title>
+    <link href="http://fruitymidnight.github.io/blog/2013/11/03/mac-tex/"/>
+    <updated>2013-11-03T16:51:00+09:00</updated>
+    <id>http://fruitymidnight.github.io/blog/2013/11/03/mac-tex</id>
+    <content type="html"><![CDATA[<p>自宅のMacにTex環境を構築しました。そのときの備忘録を残しておこうと思います。</p>
+
+<h2>方針</h2>
+
+<p><a href="http://oku.edu.mie-u.ac.jp/~okumura/texwiki/?Mac">TexWiki</a>に記載している通りにインストールしていけば大丈夫です。MacTexのインストーラをダウンロードして、TexLive2013、GUI Application、Fontをインストールし、HomebrewでGhostscriptとImageMagickをインストールしました。エディタはEmacsを使用しているのでYatexを使用しています。</p>
+
+<h2>MacTexのインストール</h2>
+
+<ol>
+<li>MacTexのインストール</li>
+<li>Pathの追加</li>
+<li>TexLiveのアップデート</li>
+<li>texmf.cnfの更新</li>
+<li>日本語環境の整備</li>
+</ol>
+
+
+<h3>MacTexのインストール</h3>
+
+<p><a href="http://tug.org/mactex/">MacTex</a>からMacTex.pkgをダウンロード。パッケージをカスタマイズする際に、TexLive2013、GUI Application、Fontにチェックしてインストールを行います。</p>
+
+<h3>Pathの追加</h3>
+
+<p>Tex Wikiの手順にはインストールするとパスが追加される、とあったのですが、追加されなかったので手動で追加します。私はpathの設定はzshenvに記載しているので、そこに<code>/usr/texbin</code>を追加しています。</p>
+
+<h3>TexLiveのアップデート</h3>
+
+<p>下記のコマンドでアップデート可能です。割りと時間がかかります。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo tlmgr update --self --all</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>texmf.cnfの更新</h3>
+
+<p>/usr/local/texlive/texmf-local/web2c/texmf.cnf を新規作成し、編集します。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>shell_escape_commands = \
+</span><span class='line'>bibtex,bibtex8,bibtexu,pbibtex,upbibtex,biber,\
+</span><span class='line'>kpsewhich,\
+</span><span class='line'>makeindex,mendex,texindy,\
+</span><span class='line'>mpost,pmpost,upmpost,\
+</span><span class='line'>repstopdf,epspdf,extractbb
+</span><span class='line'>
+</span><span class='line'>% guess input enc
+</span><span class='line'>PTEX_IN_FILTER = /usr/local/bin/nkf -w</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>日本語環境の整備</h3>
+
+<p>ヒラギノフォントを使用したいので、下記コマンドを実行します。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ sudo mkdir -p /usr/local/texlive/texmf-local/fonts/opentype/hiragino/
+</span><span class='line'>$ cd /usr/local/texlive/texmf-local/fonts/opentype/hiragino/
+</span><span class='line'>$ sudo ln -fs "/Library/Fonts/ヒラギノ明朝 Pro W3.otf" ./HiraMinPro-W3.otf
+</span><span class='line'>$ sudo ln -fs "/Library/Fonts/ヒラギノ明朝 Pro W6.otf" ./HiraMinPro-W6.otf
+</span><span class='line'>$ sudo ln -fs "/Library/Fonts/ヒラギノ丸ゴ Pro W4.otf" ./HiraMaruPro-W4.otf
+</span><span class='line'>$ sudo ln -fs "/Library/Fonts/ヒラギノ角ゴ Pro W3.otf" ./HiraKakuPro-W3.otf
+</span><span class='line'>$ sudo ln -fs "/Library/Fonts/ヒラギノ角ゴ Pro W6.otf" ./HiraKakuPro-W6.otf
+</span><span class='line'>$ sudo ln -fs "/Library/Fonts/ヒラギノ角ゴ Std W8.otf" ./HiraKakuStd-W8.otf
+</span><span class='line'>$ sudo mktexlsr
+</span><span class='line'>
+</span><span class='line'>$ sudo kanji-config-updmap-sys hiragino</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Homebrewで必要なパッケージをインストール</h2>
+
+<ol>
+<li><code>brew install ghostscript</code></li>
+<li><code>brew install imagemagick</code></li>
+<li><code>brew install nkf</code></li>
+</ol>
+
+
+<h2>Yatexのインストール</h2>
+
+<p>結局、これが一番はまった。ELPAにはないようなのでel-get経由でインストールしました。el-getもSTABLE(4.1)にはパッケージがなかったため、自分でRECIPEを書く必要がありました。</p>
+
+<ol>
+<li>recipeファイルの作成</li>
+<li>el-getでインストール</li>
+<li>.loaddefs.elの編集</li>
+<li>init.elの編集</li>
+</ol>
+
+
+<h3>recipeファイルの作成</h3>
+
+<p><code>(el-get-recipe-path)</code>で指定したディレクトリにyatex.rcpファイルを作成し、下記内容を追加。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>(:name yatex
+</span><span class='line'>       :website "http://www.yatex.org/"
+</span><span class='line'>       :description "Yet Another TeX mode for Emacs"
+</span><span class='line'>       :type hg
+</span><span class='line'>       :url "http://www.yatex.org/hgrepos/yatex"
+</span><span class='line'>)</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>el-getでインストール</h3>
+
+<p><code>M-x el-get-install RET yatex</code></p>
+
+<h3>.loaddefs.elの編集</h3>
+
+<p>Emacsを再起動するとinit.elでエラーが発生。~/.emacs.d/el-get/.loaddefs.el を編集</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='cl'><span class='line'><span class="c1">;;;### (autoloads (YaTeX-goto-corresponding-paren) &quot;yatex/yatexmth&quot;</span>
+</span><span class='line'><span class="c1">;;;;;;  &quot;yatex/yatexmth.el&quot; (21108 60721 0 0))</span>
+</span><span class='line'><span class="c1">;;; Generated autoloads from yatex/yatexmth.el</span>
+</span><span class='line'><span class="nv">from</span> <span class="nv">yatex.el</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">(</span><span class="nv">autoload</span> <span class="ss">&#39;YaTeX-goto-corresponding-paren</span> <span class="s">&quot;yatex/yatexmth&quot;</span> <span class="err">&quot;\</span>
+</span><span class='line'><span class="nv">Go</span> <span class="nv">to</span> <span class="nv">corresponding</span> <span class="nv">mathematical</span> <span class="nv">parentheses.</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>↑の<code>from yatex.el</code>でエラーが発生しているのでコメントする</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='cl'><span class='line'><span class="c1">;;;### (autoloads (YaTeX-goto-corresponding-paren) &quot;yatex/yatexmth&quot;</span>
+</span><span class='line'><span class="c1">;;;;;;  &quot;yatex/yatexmth.el&quot; (21108 60721 0 0))</span>
+</span><span class='line'><span class="c1">;;; Generated autoloads from yatex/yatexmth.el from yatex.el</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">(</span><span class="nv">autoload</span> <span class="ss">&#39;YaTeX-goto-corresponding-paren</span> <span class="s">&quot;yatex/yatexmth&quot;</span> <span class="err">&quot;\</span>
+</span><span class='line'><span class="nv">Go</span> <span class="nv">to</span> <span class="nv">corresponding</span> <span class="nv">mathematical</span> <span class="nv">parentheses.</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>init.elの編集</h3>
+
+<p>これもMacTexにサンプルファイルがあるので、そのままコピーすればOK。私の場合は起動速度をあげるためにlazyloadを利用しているので、少し修正して、下記のようにした。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+<span class='line-number'>83</span>
+<span class='line-number'>84</span>
+<span class='line-number'>85</span>
+<span class='line-number'>86</span>
+<span class='line-number'>87</span>
+<span class='line-number'>88</span>
+<span class='line-number'>89</span>
+<span class='line-number'>90</span>
+<span class='line-number'>91</span>
+<span class='line-number'>92</span>
+</pre></td><td class='code'><pre><code class='cl'><span class='line'><span class="c1">; -*- Mode: Emacs-Lisp ; Coding: utf-8 -*-</span>
+</span><span class='line'><span class="c1">;; ----------------------------------------------------------------------</span>
+</span><span class='line'><span class="c1">;; @ yatex</span>
+</span><span class='line'><span class="c1">;; http://oku.edu.mie-u.ac.jp/~okumura/texwiki/?YaTeX</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">(</span><span class="k">setq</span> <span class="nv">auto-mode-alist</span>
+</span><span class='line'>      <span class="p">(</span><span class="nb">append</span> <span class="o">&#39;</span><span class="p">((</span><span class="s">&quot;\\.tex$&quot;</span> <span class="o">.</span> <span class="nv">yatex-mode</span><span class="p">)</span>
+</span><span class='line'>                <span class="p">(</span><span class="s">&quot;\\.ltx$&quot;</span> <span class="o">.</span> <span class="nv">yatex-mode</span><span class="p">)</span>
+</span><span class='line'>                <span class="p">(</span><span class="s">&quot;\\.cls$&quot;</span> <span class="o">.</span> <span class="nv">yatex-mode</span><span class="p">)</span>
+</span><span class='line'>                <span class="p">(</span><span class="s">&quot;\\.sty$&quot;</span> <span class="o">.</span> <span class="nv">yatex-mode</span><span class="p">)</span>
+</span><span class='line'>                <span class="p">(</span><span class="s">&quot;\\.clo$&quot;</span> <span class="o">.</span> <span class="nv">yatex-mode</span><span class="p">)</span>
+</span><span class='line'>                <span class="p">(</span><span class="s">&quot;\\.bbl$&quot;</span> <span class="o">.</span> <span class="nv">yatex-mode</span><span class="p">))</span> <span class="nv">auto-mode-alist</span><span class="p">))</span>
+</span><span class='line'><span class="c1">;;</span>
+</span><span class='line'><span class="c1">;; YaTeX</span>
+</span><span class='line'><span class="c1">;;</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">(</span><span class="nv">lazyload</span> <span class="p">(</span><span class="nv">yatex-mode</span><span class="p">)</span> <span class="s">&quot;yatex&quot;</span>
+</span><span class='line'>
+</span><span class='line'>          <span class="c1">;; key-bind</span>
+</span><span class='line'>          <span class="p">(</span><span class="nv">define-key</span> <span class="nv">YaTeX-mode-map</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">&quot;C-c s&quot;</span><span class="p">)</span> <span class="ss">&#39;skim-forward-search</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>          <span class="p">(</span><span class="k">setq</span> <span class="nv">YaTeX-inhibit-prefix-letter</span> <span class="no">t</span><span class="p">)</span>
+</span><span class='line'>          <span class="p">(</span><span class="k">setq</span> <span class="nv">YaTeX-kanji-code</span> <span class="no">nil</span><span class="p">)</span>
+</span><span class='line'>          <span class="p">(</span><span class="k">setq</span> <span class="nv">YaTeX-use-LaTeX2e</span> <span class="no">t</span><span class="p">)</span>
+</span><span class='line'>          <span class="p">(</span><span class="k">setq</span> <span class="nv">YaTeX-use-AMS-LaTeX</span> <span class="no">t</span><span class="p">)</span>
+</span><span class='line'>          <span class="p">(</span><span class="k">setq</span> <span class="nv">YaTeX-dvi2-command-ext-alist</span>
+</span><span class='line'>                <span class="o">&#39;</span><span class="p">((</span><span class="s">&quot;Preview\\|TeXShop\\|TeXworks\\|Skim\\|mupdf\\|xpdf\\|Firefox\\|Adobe&quot;</span> <span class="o">.</span> <span class="s">&quot;.pdf&quot;</span><span class="p">)))</span>
+</span><span class='line'>          <span class="p">(</span><span class="k">setq</span> <span class="nv">tex-command</span> <span class="s">&quot;/usr/texbin/ptex2pdf -l -ot &#39;-synctex=1&#39;&quot;</span><span class="p">)</span>
+</span><span class='line'>                                        <span class="c1">;(setq tex-command &quot;/usr/texbin/ptex2pdf -l -u -ot &#39;-synctex=1&#39;&quot;)</span>
+</span><span class='line'>                                        <span class="c1">;(setq tex-command &quot;/usr/texbin/pdflatex -synctex=1&quot;)</span>
+</span><span class='line'>                                        <span class="c1">;(setq tex-command &quot;/usr/texbin/lualatex -synctex=1&quot;)</span>
+</span><span class='line'>                                        <span class="c1">;(setq tex-command &quot;/usr/texbin/luajitlatex -synctex=1&quot;)</span>
+</span><span class='line'>                                        <span class="c1">;(setq tex-command &quot;/usr/texbin/xelatex -synctex=1&quot;)</span>
+</span><span class='line'>                                        <span class="c1">;(setq tex-command &quot;/usr/texbin/latexmk&quot;)</span>
+</span><span class='line'>                                        <span class="c1">;(setq tex-command &quot;/usr/texbin/latexmk -e &#39;$latex=q/platex %O -synctex=1 %S/&#39; -e &#39;$bibtex=q/pbibtex %O %B/&#39; -e &#39;$makeindex=q/mendex %O -o %D %S/&#39; -e &#39;$dvipdf=q/dvipdfmx %O -o %D %S/&#39; -norc -gg -pdfdvi&quot;)</span>
+</span><span class='line'>                                        <span class="c1">;(setq tex-command &quot;/usr/texbin/latexmk -e &#39;$latex=q/platex %O -synctex=1 %S/&#39; -e &#39;$bibtex=q/pbibtex %O %B/&#39; -e &#39;$makeindex=q/mendex %O -o %D %S/&#39; -e &#39;$dvips=q/dvips %O -z -f %S | convbkmk -g &gt; %D/&#39; -e &#39;$ps2pdf=q/ps2pdf %O %S %D/&#39; -norc -gg -pdfps&quot;)</span>
+</span><span class='line'>                                        <span class="c1">;(setq tex-command &quot;/usr/texbin/latexmk -e &#39;$latex=q/uplatex %O -synctex=1 %S/&#39; -e &#39;$bibtex=q/upbibtex %O %B/&#39; -e &#39;$makeindex=q/mendex %O -o %D %S/&#39; -e &#39;$dvipdf=q/dvipdfmx %O -o %D %S/&#39; -norc -gg -pdfdvi&quot;)</span>
+</span><span class='line'>                                        <span class="c1">;(setq tex-command &quot;/usr/texbin/latexmk -e &#39;$latex=q/uplatex %O -synctex=1 %S/&#39; -e &#39;$bibtex=q/upbibtex %O %B/&#39; -e &#39;$makeindex=q/mendex %O -o %D %S/&#39; -e &#39;$dvips=q/dvips %O -z -f %S | convbkmk -u &gt; %D/&#39; -e &#39;$ps2pdf=q/ps2pdf %O %S %D/&#39; -norc -gg -pdfps&quot;)</span>
+</span><span class='line'>                                        <span class="c1">;(setq tex-command &quot;/usr/texbin/latexmk -e &#39;$pdflatex=q/pdflatex %O -synctex=1 %S/&#39; -e &#39;$bibtex=q/bibtex %O %B/&#39; -e &#39;$makeindex=q/makeindex %O -o %D %S/&#39; -norc -gg -pdf&quot;)</span>
+</span><span class='line'>                                        <span class="c1">;(setq tex-command &quot;/usr/texbin/latexmk -e &#39;$pdflatex=q/lualatex %O -synctex=1 %S/&#39; -e &#39;$bibtex=q/bibtexu %O %B/&#39; -e &#39;$makeindex=q/texindy %O -o %D %S/&#39; -norc -gg -lualatex&quot;)</span>
+</span><span class='line'>                                        <span class="c1">;(setq tex-command &quot;/usr/texbin/latexmk -e &#39;$pdflatex=q/luajitlatex %O -synctex=1 %S/&#39; -e &#39;$bibtex=q/bibtexu %O %B/&#39; -e &#39;$makeindex=q/texindy %O -o %D %S/&#39; -norc -gg -lualatex&quot;)</span>
+</span><span class='line'>                                        <span class="c1">;(setq tex-command &quot;/usr/texbin/latexmk -e &#39;$pdflatex=q/xelatex %O -synctex=1 %S/&#39; -e &#39;$bibtex=q/bibtexu %O %B/&#39; -e &#39;$makeindex=q/texindy %O -o %D %S/&#39; -norc -gg -xelatex&quot;)</span>
+</span><span class='line'>          <span class="p">(</span><span class="k">setq</span> <span class="nv">bibtex-command</span> <span class="p">(</span><span class="nb">cond</span> <span class="p">((</span><span class="nv">string-match</span> <span class="s">&quot;uplatex\\|-u&quot;</span> <span class="nv">tex-command</span><span class="p">)</span> <span class="s">&quot;/usr/texbin/upbibtex&quot;</span><span class="p">)</span>
+</span><span class='line'>                                     <span class="p">((</span><span class="nv">string-match</span> <span class="s">&quot;platex&quot;</span> <span class="nv">tex-command</span><span class="p">)</span> <span class="s">&quot;/usr/texbin/pbibtex&quot;</span><span class="p">)</span>
+</span><span class='line'>                                     <span class="p">((</span><span class="nv">string-match</span> <span class="s">&quot;lualatex\\|luajitlatex\\|xelatex&quot;</span> <span class="nv">tex-command</span><span class="p">)</span> <span class="s">&quot;/usr/texbin/bibtexu&quot;</span><span class="p">)</span>
+</span><span class='line'>                                     <span class="p">((</span><span class="nv">string-match</span> <span class="s">&quot;pdflatex\\|latex&quot;</span> <span class="nv">tex-command</span><span class="p">)</span> <span class="s">&quot;/usr/texbin/bibtex&quot;</span><span class="p">)</span>
+</span><span class='line'>                                     <span class="p">(</span><span class="no">t</span> <span class="s">&quot;/usr/texbin/pbibtex&quot;</span><span class="p">)))</span>
+</span><span class='line'>          <span class="p">(</span><span class="k">setq</span> <span class="nv">makeindex-command</span> <span class="p">(</span><span class="nb">cond</span> <span class="p">((</span><span class="nv">string-match</span> <span class="s">&quot;uplatex\\|-u&quot;</span> <span class="nv">tex-command</span><span class="p">)</span> <span class="s">&quot;/usr/texbin/mendex&quot;</span><span class="p">)</span>
+</span><span class='line'>                                        <span class="p">((</span><span class="nv">string-match</span> <span class="s">&quot;platex&quot;</span> <span class="nv">tex-command</span><span class="p">)</span> <span class="s">&quot;/usr/texbin/mendex&quot;</span><span class="p">)</span>
+</span><span class='line'>                                        <span class="p">((</span><span class="nv">string-match</span> <span class="s">&quot;lualatex\\|luajitlatex\\|xelatex&quot;</span> <span class="nv">tex-command</span><span class="p">)</span> <span class="s">&quot;/usr/texbin/texindy&quot;</span><span class="p">)</span>
+</span><span class='line'>                                        <span class="p">((</span><span class="nv">string-match</span> <span class="s">&quot;pdflatex\\|latex&quot;</span> <span class="nv">tex-command</span><span class="p">)</span> <span class="s">&quot;/usr/texbin/makeindex&quot;</span><span class="p">)</span>
+</span><span class='line'>                                        <span class="p">(</span><span class="no">t</span> <span class="s">&quot;/usr/texbin/mendex&quot;</span><span class="p">)))</span>
+</span><span class='line'>          <span class="p">(</span><span class="k">setq</span> <span class="nv">dvi2-command</span> <span class="s">&quot;/usr/bin/open -a Preview&quot;</span><span class="p">)</span>
+</span><span class='line'>                                        <span class="c1">;(setq dvi2-command &quot;/usr/bin/open -a Skim&quot;)</span>
+</span><span class='line'>                                        <span class="c1">;(setq dvi2-command &quot;/usr/bin/open -a TeXShop&quot;)</span>
+</span><span class='line'>                                        <span class="c1">;(setq dvi2-command &quot;/usr/bin/open -a TeXworks&quot;)</span>
+</span><span class='line'>                                        <span class="c1">;(setq dvi2-command &quot;/usr/bin/open -a Firefox&quot;)</span>
+</span><span class='line'>          <span class="p">(</span><span class="k">setq</span> <span class="nv">dviprint-command-format</span> <span class="s">&quot;/usr/bin/open -a \&quot;Adobe Reader\&quot; `echo %s | gsed -e \&quot;s/\\.[^.]*$/\\.pdf/\&quot;`&quot;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>          <span class="p">(</span><span class="nb">defun</span> <span class="nv">skim-forward-search</span> <span class="p">()</span>
+</span><span class='line'>            <span class="p">(</span><span class="nv">interactive</span><span class="p">)</span>
+</span><span class='line'>            <span class="p">(</span><span class="k">progn</span>
+</span><span class='line'>              <span class="p">(</span><span class="nv">process-kill-without-query</span>
+</span><span class='line'>               <span class="p">(</span><span class="nv">start-process</span>
+</span><span class='line'>                <span class="s">&quot;displayline&quot;</span>
+</span><span class='line'>                <span class="no">nil</span>
+</span><span class='line'>                <span class="s">&quot;/Applications/Skim.app/Contents/SharedSupport/displayline&quot;</span>
+</span><span class='line'>                <span class="p">(</span><span class="nv">number-to-string</span> <span class="p">(</span><span class="nv">save-restriction</span>
+</span><span class='line'>                                    <span class="p">(</span><span class="nv">widen</span><span class="p">)</span>
+</span><span class='line'>                                    <span class="p">(</span><span class="nv">count-lines</span> <span class="p">(</span><span class="nv">point-min</span><span class="p">)</span> <span class="p">(</span><span class="nv">point</span><span class="p">))))</span>
+</span><span class='line'>                <span class="p">(</span><span class="nv">expand-file-name</span>
+</span><span class='line'>                 <span class="p">(</span><span class="nv">concat</span> <span class="p">(</span><span class="nv">file-name-sans-extension</span> <span class="p">(</span><span class="nb">or</span> <span class="nv">YaTeX-parent-file</span>
+</span><span class='line'>                                                       <span class="p">(</span><span class="nv">save-excursion</span>
+</span><span class='line'>                                                         <span class="p">(</span><span class="nv">YaTeX-visit-main</span> <span class="no">t</span><span class="p">)</span>
+</span><span class='line'>                                                         <span class="nv">buffer-file-name</span><span class="p">)))</span>
+</span><span class='line'>                         <span class="s">&quot;.pdf&quot;</span><span class="p">))</span>
+</span><span class='line'>                <span class="nv">buffer-file-name</span><span class="p">))))</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>          <span class="p">(</span><span class="nv">auto-fill-mode</span> <span class="mi">-1</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>          <span class="c1">;;</span>
+</span><span class='line'>          <span class="c1">;; RefTeX with YaTeX</span>
+</span><span class='line'>          <span class="c1">;;</span>
+</span><span class='line'>          <span class="p">(</span><span class="nv">reftex-mode</span> <span class="mi">1</span><span class="p">)</span>
+</span><span class='line'>          <span class="p">(</span><span class="nv">define-key</span> <span class="nv">reftex-mode-map</span> <span class="p">(</span><span class="nv">concat</span> <span class="nv">YaTeX-prefix</span> <span class="s">&quot;&gt;&quot;</span><span class="p">)</span> <span class="ss">&#39;YaTeX-comment-region</span><span class="p">)</span>
+</span><span class='line'>          <span class="p">(</span><span class="nv">define-key</span> <span class="nv">reftex-mode-map</span> <span class="p">(</span><span class="nv">concat</span> <span class="nv">YaTeX-prefix</span> <span class="s">&quot;&lt;&quot;</span><span class="p">)</span> <span class="ss">&#39;YaTeX-uncomment-region</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>          <span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[VMWare Fusion 上の仮想マシンをヘッドレスモードで動作させる方法]]></title>

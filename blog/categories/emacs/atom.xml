@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: emacs | Shin's blog]]></title>
+  <link href="http://fruitymidnight.github.io/blog/categories/emacs/atom.xml" rel="self"/>
+  <link href="http://fruitymidnight.github.io/"/>
+  <updated>2013-11-03T18:17:06+09:00</updated>
+  <id>http://fruitymidnight.github.io/</id>
+  <author>
+    <name><![CDATA[Shin]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[MacOSのTex環境導入]]></title>
+    <link href="http://fruitymidnight.github.io/blog/2013/11/03/mac-tex/"/>
+    <updated>2013-11-03T16:51:00+09:00</updated>
+    <id>http://fruitymidnight.github.io/blog/2013/11/03/mac-tex</id>
+    <content type="html"><![CDATA[<p>自宅のMacにTex環境を構築しました。そのときの備忘録を残しておこうと思います。</p>
+
+<h2>方針</h2>
+
+<p><a href="http://oku.edu.mie-u.ac.jp/~okumura/texwiki/?Mac">TexWiki</a>に記載している通りにインストールしていけば大丈夫です。MacTexのインストーラをダウンロードして、TexLive2013、GUI Application、Fontをインストールし、HomebrewでGhostscriptとImageMagickをインストールしました。エディタはEmacsを使用しているのでYatexを使用しています。</p>
+
+<h2>MacTexのインストール</h2>
+
+<ol>
+<li>MacTexのインストール</li>
+<li>Pathの追加</li>
+<li>TexLiveのアップデート</li>
+<li>texmf.cnfの更新</li>
+<li>日本語環境の整備</li>
+</ol>
+
+
+<h3>MacTexのインストール</h3>
+
+<p><a href="http://tug.org/mactex/">MacTex</a>からMacTex.pkgをダウンロード。パッケージをカスタマイズする際に、TexLive2013、GUI Application、Fontにチェックしてインストールを行います。</p>
+
+<h3>Pathの追加</h3>
+
+<p>Tex Wikiの手順にはインストールするとパスが追加される、とあったのですが、追加されなかったので手動で追加します。私はpathの設定はzshenvに記載しているので、そこに<code>/usr/texbin</code>を追加しています。</p>
+
+<h3>TexLiveのアップデート</h3>
+
+<p>下記のコマンドでアップデート可能です。割りと時間がかかります。
+<code>
+sudo tlmgr update --self --all
+</code></p>
+
+<h3>texmf.cnfの更新</h3>
+
+<p>/usr/local/texlive/texmf-local/web2c/texmf.cnf を新規作成し、編集します。</p>
+
+<p>```
+shell_escape_commands = \
+bibtex,bibtex8,bibtexu,pbibtex,upbibtex,biber,\
+kpsewhich,\
+makeindex,mendex,texindy,\
+mpost,pmpost,upmpost,\
+repstopdf,epspdf,extractbb</p>
+
+<p>% guess input enc
+PTEX_IN_FILTER = /usr/local/bin/nkf -w
+```</p>
+
+<h3>日本語環境の整備</h3>
+
+<p>ヒラギノフォントを使用したいので、下記コマンドを実行します。</p>
+
+<p>```
+$ sudo mkdir -p /usr/local/texlive/texmf-local/fonts/opentype/hiragino/
+$ cd /usr/local/texlive/texmf-local/fonts/opentype/hiragino/
+$ sudo ln -fs "/Library/Fonts/ヒラギノ明朝 Pro W3.otf" ./HiraMinPro-W3.otf
+$ sudo ln -fs "/Library/Fonts/ヒラギノ明朝 Pro W6.otf" ./HiraMinPro-W6.otf
+$ sudo ln -fs "/Library/Fonts/ヒラギノ丸ゴ Pro W4.otf" ./HiraMaruPro-W4.otf
+$ sudo ln -fs "/Library/Fonts/ヒラギノ角ゴ Pro W3.otf" ./HiraKakuPro-W3.otf
+$ sudo ln -fs "/Library/Fonts/ヒラギノ角ゴ Pro W6.otf" ./HiraKakuPro-W6.otf
+$ sudo ln -fs "/Library/Fonts/ヒラギノ角ゴ Std W8.otf" ./HiraKakuStd-W8.otf
+$ sudo mktexlsr</p>
+
+<p>$ sudo kanji-config-updmap-sys hiragino
+```</p>
+
+<h2>Homebrewで必要なパッケージをインストール</h2>
+
+<ol>
+<li><code>brew install ghostscript</code></li>
+<li><code>brew install imagemagick</code></li>
+<li><code>brew install nkf</code></li>
+</ol>
+
+
+<h2>Yatexのインストール</h2>
+
+<p>結局、これが一番はまった。ELPAにはないようなのでel-get経由でインストールしました。el-getもSTABLE(4.1)にはパッケージがなかったため、自分でRECIPEを書く必要がありました。</p>
+
+<ol>
+<li>recipeファイルの作成</li>
+<li>el-getでインストール</li>
+<li>.loaddefs.elの編集</li>
+<li>init.elの編集</li>
+</ol>
+
+
+<h3>recipeファイルの作成</h3>
+
+<p><code>(el-get-recipe-path)</code>で指定したディレクトリにyatex.rcpファイルを作成し、下記内容を追加。
+```
+(:name yatex</p>
+
+<pre><code>   :website "http://www.yatex.org/"
+   :description "Yet Another TeX mode for Emacs"
+   :type hg
+   :url "http://www.yatex.org/hgrepos/yatex"
+</code></pre>
+
+<p>)
+```</p>
+
+<h3>el-getでインストール</h3>
+
+<p><code>M-x el-get-install RET yatex</code></p>
+
+<h3>.loaddefs.elの編集</h3>
+
+<p>Emacsを再起動するとinit.elでエラーが発生。~/.emacs.d/el-get/.loaddefs.el を編集
+```cl
+;;;### (autoloads (YaTeX-goto-corresponding-paren) "yatex/yatexmth"
+;;;;;;  "yatex/yatexmth.el" (21108 60721 0 0))
+;;; Generated autoloads from yatex/yatexmth.el
+from yatex.el</p>
+
+<p>(autoload 'YaTeX-goto-corresponding-paren "yatex/yatexmth" "\
+Go to corresponding mathematical parentheses.
+<code>
+↑の`from yatex.el`でエラーが発生しているのでコメントする
+</code>cl
+;;;### (autoloads (YaTeX-goto-corresponding-paren) "yatex/yatexmth"
+;;;;;;  "yatex/yatexmth.el" (21108 60721 0 0))
+;;; Generated autoloads from yatex/yatexmth.el from yatex.el</p>
+
+<p>(autoload 'YaTeX-goto-corresponding-paren "yatex/yatexmth" "\
+Go to corresponding mathematical parentheses.
+```</p>
+
+<h3>init.elの編集</h3>
+
+<p>これもMacTexにサンプルファイルがあるので、そのままコピーすればOK。私の場合は起動速度をあげるためにlazyloadを利用しているので、少し修正して、下記のようにした。</p>
+
+<p>```cl
+; -<em>- Mode: Emacs-Lisp ; Coding: utf-8 -</em>-
+;; ----------------------------------------------------------------------
+;; @ yatex
+;; http://oku.edu.mie-u.ac.jp/~okumura/texwiki/?YaTeX</p>
+
+<p>(setq auto-mode-alist</p>
+
+<pre><code>  (append '(("\\.tex$" . yatex-mode)
+            ("\\.ltx$" . yatex-mode)
+            ("\\.cls$" . yatex-mode)
+            ("\\.sty$" . yatex-mode)
+            ("\\.clo$" . yatex-mode)
+            ("\\.bbl$" . yatex-mode)) auto-mode-alist))
+</code></pre>
+
+<p>;;
+;; YaTeX
+;;</p>
+
+<p>(lazyload (yatex-mode) "yatex"</p>
+
+<pre><code>      ;; key-bind
+      (define-key YaTeX-mode-map (kbd "C-c s") 'skim-forward-search)
+
+
+      (setq YaTeX-inhibit-prefix-letter t)
+      (setq YaTeX-kanji-code nil)
+      (setq YaTeX-use-LaTeX2e t)
+      (setq YaTeX-use-AMS-LaTeX t)
+      (setq YaTeX-dvi2-command-ext-alist
+            '(("Preview\\|TeXShop\\|TeXworks\\|Skim\\|mupdf\\|xpdf\\|Firefox\\|Adobe" . ".pdf")))
+      (setq tex-command "/usr/texbin/ptex2pdf -l -ot '-synctex=1'")
+                                    ;(setq tex-command "/usr/texbin/ptex2pdf -l -u -ot '-synctex=1'")
+                                    ;(setq tex-command "/usr/texbin/pdflatex -synctex=1")
+                                    ;(setq tex-command "/usr/texbin/lualatex -synctex=1")
+                                    ;(setq tex-command "/usr/texbin/luajitlatex -synctex=1")
+                                    ;(setq tex-command "/usr/texbin/xelatex -synctex=1")
+                                    ;(setq tex-command "/usr/texbin/latexmk")
+                                    ;(setq tex-command "/usr/texbin/latexmk -e '$latex=q/platex %O -synctex=1 %S/' -e '$bibtex=q/pbibtex %O %B/' -e '$makeindex=q/mendex %O -o %D %S/' -e '$dvipdf=q/dvipdfmx %O -o %D %S/' -norc -gg -pdfdvi")
+                                    ;(setq tex-command "/usr/texbin/latexmk -e '$latex=q/platex %O -synctex=1 %S/' -e '$bibtex=q/pbibtex %O %B/' -e '$makeindex=q/mendex %O -o %D %S/' -e '$dvips=q/dvips %O -z -f %S | convbkmk -g &gt; %D/' -e '$ps2pdf=q/ps2pdf %O %S %D/' -norc -gg -pdfps")
+                                    ;(setq tex-command "/usr/texbin/latexmk -e '$latex=q/uplatex %O -synctex=1 %S/' -e '$bibtex=q/upbibtex %O %B/' -e '$makeindex=q/mendex %O -o %D %S/' -e '$dvipdf=q/dvipdfmx %O -o %D %S/' -norc -gg -pdfdvi")
+                                    ;(setq tex-command "/usr/texbin/latexmk -e '$latex=q/uplatex %O -synctex=1 %S/' -e '$bibtex=q/upbibtex %O %B/' -e '$makeindex=q/mendex %O -o %D %S/' -e '$dvips=q/dvips %O -z -f %S | convbkmk -u &gt; %D/' -e '$ps2pdf=q/ps2pdf %O %S %D/' -norc -gg -pdfps")
+                                    ;(setq tex-command "/usr/texbin/latexmk -e '$pdflatex=q/pdflatex %O -synctex=1 %S/' -e '$bibtex=q/bibtex %O %B/' -e '$makeindex=q/makeindex %O -o %D %S/' -norc -gg -pdf")
+                                    ;(setq tex-command "/usr/texbin/latexmk -e '$pdflatex=q/lualatex %O -synctex=1 %S/' -e '$bibtex=q/bibtexu %O %B/' -e '$makeindex=q/texindy %O -o %D %S/' -norc -gg -lualatex")
+                                    ;(setq tex-command "/usr/texbin/latexmk -e '$pdflatex=q/luajitlatex %O -synctex=1 %S/' -e '$bibtex=q/bibtexu %O %B/' -e '$makeindex=q/texindy %O -o %D %S/' -norc -gg -lualatex")
+                                    ;(setq tex-command "/usr/texbin/latexmk -e '$pdflatex=q/xelatex %O -synctex=1 %S/' -e '$bibtex=q/bibtexu %O %B/' -e '$makeindex=q/texindy %O -o %D %S/' -norc -gg -xelatex")
+      (setq bibtex-command (cond ((string-match "uplatex\\|-u" tex-command) "/usr/texbin/upbibtex")
+                                 ((string-match "platex" tex-command) "/usr/texbin/pbibtex")
+                                 ((string-match "lualatex\\|luajitlatex\\|xelatex" tex-command) "/usr/texbin/bibtexu")
+                                 ((string-match "pdflatex\\|latex" tex-command) "/usr/texbin/bibtex")
+                                 (t "/usr/texbin/pbibtex")))
+      (setq makeindex-command (cond ((string-match "uplatex\\|-u" tex-command) "/usr/texbin/mendex")
+                                    ((string-match "platex" tex-command) "/usr/texbin/mendex")
+                                    ((string-match "lualatex\\|luajitlatex\\|xelatex" tex-command) "/usr/texbin/texindy")
+                                    ((string-match "pdflatex\\|latex" tex-command) "/usr/texbin/makeindex")
+                                    (t "/usr/texbin/mendex")))
+      (setq dvi2-command "/usr/bin/open -a Preview")
+                                    ;(setq dvi2-command "/usr/bin/open -a Skim")
+                                    ;(setq dvi2-command "/usr/bin/open -a TeXShop")
+                                    ;(setq dvi2-command "/usr/bin/open -a TeXworks")
+                                    ;(setq dvi2-command "/usr/bin/open -a Firefox")
+      (setq dviprint-command-format "/usr/bin/open -a \"Adobe Reader\" `echo %s | gsed -e \"s/\\.[^.]*$/\\.pdf/\"`")
+
+      (defun skim-forward-search ()
+        (interactive)
+        (progn
+          (process-kill-without-query
+           (start-process  
+            "displayline"
+            nil
+            "/Applications/Skim.app/Contents/SharedSupport/displayline"
+            (number-to-string (save-restriction
+                                (widen)
+                                (count-lines (point-min) (point))))
+            (expand-file-name
+             (concat (file-name-sans-extension (or YaTeX-parent-file
+                                                   (save-excursion
+                                                     (YaTeX-visit-main t)
+                                                     buffer-file-name)))
+                     ".pdf"))
+            buffer-file-name))))
+
+
+
+      (auto-fill-mode -1)
+
+      ;;
+      ;; RefTeX with YaTeX
+      ;;
+      (reftex-mode 1)
+      (define-key reftex-mode-map (concat YaTeX-prefix "&gt;") 'YaTeX-comment-region)
+      (define-key reftex-mode-map (concat YaTeX-prefix "&lt;") 'YaTeX-uncomment-region)
+
+
+      )
+</code></pre>
+
+<p>```</p>
+]]></content>
+  </entry>
+  
+</feed>
